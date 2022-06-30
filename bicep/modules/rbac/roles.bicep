@@ -10,7 +10,7 @@ resource storage 'Microsoft.Storage/storageAccounts@2021-04-01' existing = {
 }
 
 resource rbacStorage 'Microsoft.Storage/storageAccounts/providers/roleAssignments@2020-04-01-preview' = {
-  name: guid(subscription().id,principalId)
+  name: storageBlobDataContributorRoleGuid
   scope: storage
   properties: {
     roleDefinitionId: storageBlobDataContributorRole
