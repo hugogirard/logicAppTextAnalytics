@@ -24,7 +24,7 @@ module textAnalytics 'modules/cognitive/textanalytic.bicep' = {
   name: 'txtAnalytics'
   params: {
     location: location
-    storageId: storage.outputs.strDocumentApiVersion
+    storageId: storage.outputs.strDocumentId
     suffix: suffix
   }
 }
