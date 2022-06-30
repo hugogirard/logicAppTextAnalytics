@@ -28,3 +28,13 @@ module textAnalytics 'modules/cognitive/textanalytic.bicep' = {
     suffix: suffix
   }
 }
+
+module role 'modules/rbac/roles.bicep' = {
+  scope: resourceGroup(rg.name)
+  name: 'rbacStorage'
+  params: {
+    principalId: textAnalytics.outputs.managedIdentity
+    storageAccountName: storage.outputs.strDocumentName
+    textAnalyticServiceName: textAnalytics.outputs.txtAnalyticServiceName
+  }
+}

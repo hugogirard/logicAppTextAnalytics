@@ -56,6 +56,36 @@ resource containerDocuments 'Microsoft.Storage/storageAccounts/blobServices/cont
   }
 }
 
+resource blobService 'Microsoft.Storage/storageAccounts/blobServices@2021-04-01' = {
+  name: '${storageAccountDocument.name}/default'
+  properties: {
+    cors: {
+      corsRules: [
+        {
+          allowedOrigins: [
+            'https://language.cognitive.azure.com'
+          ]
+          allowedMethods: [
+            'DELETE'
+            'GET'
+            'POST'
+            'OPTIONS'
+            'PUT'
+          ]
+          exposedHeaders: [
+            '*'
+          ]
+          allowedHeaders: [
+            '*'
+          ]
+          maxAgeInSeconds: 500
+        }
+      ]
+    }
+  }
+}
+
+
 output strDocumentName string = storageAccountDocument.name
 output strDocumentId string = storageAccountDocument.id
 output strDocumentApiVersion string = storageAccountDocument.apiVersion

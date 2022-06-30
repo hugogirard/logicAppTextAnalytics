@@ -6,6 +6,9 @@ resource textAnalytics 'Microsoft.CognitiveServices/accounts@2022-03-01' = {
   name: 'txt-ana-${suffix}'
   kind: 'TextAnalytics'
   location: location
+  identity: {
+    type: 'SystemAssigned'
+  }
   sku: {
     name: 'S'
   }
@@ -17,3 +20,6 @@ resource textAnalytics 'Microsoft.CognitiveServices/accounts@2022-03-01' = {
     ]
   }
 }
+
+output txtAnalyticServiceName string = textAnalytics.name
+output managedIdentity string = textAnalytics.identity.principalId
