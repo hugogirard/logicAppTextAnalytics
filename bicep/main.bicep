@@ -18,3 +18,13 @@ module storage 'modules/storage/storage.bicep' = {
     suffix: suffix
   }
 }
+
+module textAnalytics 'modules/cognitive/textanalytic.bicep' = {
+  scope: resourceGroup(rg.name)
+  name: 'txtAnalytics'
+  params: {
+    location: location
+    storageId: storage.outputs.strDocumentApiVersion
+    suffix: suffix
+  }
+}
